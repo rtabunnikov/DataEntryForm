@@ -24,12 +24,13 @@ namespace DataEntryFormSample {
 
         private void BindCustomEditors() {
             var sheet = spreadsheetControl1.ActiveWorksheet;
-            sheet.CustomCellInplaceEditors.Add(sheet["D8"], CustomCellInplaceEditorType.Custom, "RegularHoursWorked");
-            sheet.CustomCellInplaceEditors.Add(sheet["D10"], CustomCellInplaceEditorType.Custom, "VacationHours");
-            sheet.CustomCellInplaceEditors.Add(sheet["D12"], CustomCellInplaceEditorType.Custom, "SickHours");
-            sheet.CustomCellInplaceEditors.Add(sheet["D14"], CustomCellInplaceEditorType.Custom, "OvertimeHours");
-            sheet.CustomCellInplaceEditors.Add(sheet["D16"], CustomCellInplaceEditorType.Custom, "OvertimeRate");
-            sheet.CustomCellInplaceEditors.Add(sheet["D22"], CustomCellInplaceEditorType.Custom, "OtherDeduction");
+            var customEditors = sheet.CustomCellInplaceEditors;
+            customEditors.Add(sheet["D8"], CustomCellInplaceEditorType.Custom, "RegularHoursWorked");
+            customEditors.Add(sheet["D10"], CustomCellInplaceEditorType.Custom, "VacationHours");
+            customEditors.Add(sheet["D12"], CustomCellInplaceEditorType.Custom, "SickHours");
+            customEditors.Add(sheet["D14"], CustomCellInplaceEditorType.Custom, "OvertimeHours");
+            customEditors.Add(sheet["D16"], CustomCellInplaceEditorType.Custom, "OvertimeRate");
+            customEditors.Add(sheet["D22"], CustomCellInplaceEditorType.Custom, "OtherDeduction");
         }
 
         private void spreadsheetControl1_CustomCellEdit(object sender, DevExpress.XtraSpreadsheet.SpreadsheetCustomCellEditEventArgs e) {
