@@ -34,22 +34,29 @@ namespace DataEntryFormSample {
         }
 
         private void spreadsheetControl1_CustomCellEdit(object sender, DevExpress.XtraSpreadsheet.SpreadsheetCustomCellEditEventArgs e) {
-            if (e.ValueObject.IsText) {
-                if (e.ValueObject.TextValue == "RegularHoursWorked")
-                    e.RepositoryItem = CreateSpinEdit(0, 184, 1);
-                else if (e.ValueObject.TextValue == "VacationHours")
-                    e.RepositoryItem = CreateSpinEdit(0, 184, 1);
-                else if (e.ValueObject.TextValue == "SickHours")
-                    e.RepositoryItem = CreateSpinEdit(0, 184, 1);
-                else if (e.ValueObject.TextValue == "OvertimeHours")
-                    e.RepositoryItem = CreateSpinEdit(0, 100, 1);
-                else if (e.ValueObject.TextValue == "OvertimeRate")
-                    e.RepositoryItem = CreateSpinEdit(0, 100, 1);
-                else if (e.ValueObject.TextValue == "OtherDeduction")
-                    e.RepositoryItem = CreateSpinEdit(0, 100, 1);
-            }
+            if (e.ValueObject.IsText)
+                e.RepositoryItem = CreateCustomEditor(e.ValueObject.TextValue);
             if (e.RepositoryItem != null)
                 e.RepositoryItem.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
+        }
+
+        private RepositoryItem CreateCustomEditor(string tag) {
+            switch (tag) {
+                case "RegularHoursWorked":
+                    return CreateSpinEdit(0, 184, 1);
+                case "VacationHours":
+                    return CreateSpinEdit(0, 184, 1);
+                case "SickHours":
+                    return CreateSpinEdit(0, 184, 1);
+                case "OvertimeHours":
+                    return CreateSpinEdit(0, 100, 1);
+                case "OvertimeRate":
+                    return CreateSpinEdit(0, 100, 1);
+                case "OtherDeduction":
+                    return CreateSpinEdit(0, 100, 1);
+                default:
+                    return null;
+            }
         }
 
         private RepositoryItemSpinEdit CreateSpinEdit(int minValue, int maxValue, int increment) => new RepositoryItemSpinEdit {
