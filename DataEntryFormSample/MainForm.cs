@@ -24,38 +24,23 @@ namespace DataEntryFormSample {
 
         private void BindCustomEditors() {
             var sheet = spreadsheetControl1.ActiveWorksheet;
-            var customEditors = sheet.CustomCellInplaceEditors;
-            customEditors.Add(sheet["D8"], CustomCellInplaceEditorType.Custom, "RegularHoursWorked");
-            customEditors.Add(sheet["D10"], CustomCellInplaceEditorType.Custom, "VacationHours");
-            customEditors.Add(sheet["D12"], CustomCellInplaceEditorType.Custom, "SickHours");
-            customEditors.Add(sheet["D14"], CustomCellInplaceEditorType.Custom, "OvertimeHours");
-            customEditors.Add(sheet["D16"], CustomCellInplaceEditorType.Custom, "OvertimeRate");
-            customEditors.Add(sheet["D22"], CustomCellInplaceEditorType.Custom, "OtherDeduction");
-        }
-
-        private void spreadsheetControl1_CustomCellEdit(object sender, DevExpress.XtraSpreadsheet.SpreadsheetCustomCellEditEventArgs e) {
-            if (e.ValueObject.IsText)
-                e.RepositoryItem = CreateCustomEditor(e.ValueObject.TextValue);
-            if (e.RepositoryItem != null)
-                e.RepositoryItem.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
+            sheet.CustomCellInplaceEditors.Add(sheet["D8"], CustomCellInplaceEditorType.Custom, "RegularHoursWorked");
+            sheet.CustomCellInplaceEditors.Add(sheet["D10"], CustomCellInplaceEditorType.Custom, "VacationHours");
+            sheet.CustomCellInplaceEditors.Add(sheet["D12"], CustomCellInplaceEditorType.Custom, "SickHours");
+            sheet.CustomCellInplaceEditors.Add(sheet["D14"], CustomCellInplaceEditorType.Custom, "OvertimeHours");
+            sheet.CustomCellInplaceEditors.Add(sheet["D16"], CustomCellInplaceEditorType.Custom, "OvertimeRate");
+            sheet.CustomCellInplaceEditors.Add(sheet["D22"], CustomCellInplaceEditorType.Custom, "OtherDeduction");
         }
 
         private RepositoryItem CreateCustomEditor(string tag) {
             switch (tag) {
-                case "RegularHoursWorked":
-                    return CreateSpinEdit(0, 184, 1);
-                case "VacationHours":
-                    return CreateSpinEdit(0, 184, 1);
-                case "SickHours":
-                    return CreateSpinEdit(0, 184, 1);
-                case "OvertimeHours":
-                    return CreateSpinEdit(0, 100, 1);
-                case "OvertimeRate":
-                    return CreateSpinEdit(0, 100, 1);
-                case "OtherDeduction":
-                    return CreateSpinEdit(0, 100, 1);
-                default:
-                    return null;
+                case "RegularHoursWorked": return CreateSpinEdit(0, 184, 1);
+                case "VacationHours":      return CreateSpinEdit(0, 184, 1);
+                case "SickHours":          return CreateSpinEdit(0, 184, 1);
+                case "OvertimeHours":      return CreateSpinEdit(0, 100, 1);
+                case "OvertimeRate":       return CreateSpinEdit(0, 100, 1);
+                case "OtherDeduction":     return CreateSpinEdit(0, 100, 1);
+                default:                   return null;
             }
         }
 
@@ -68,14 +53,19 @@ namespace DataEntryFormSample {
             IsFloatValue = false
         };
 
-        private void ActivateEditor() {
+        private void ActivateCustomEditor() {
             var sheet = spreadsheetControl1.ActiveWorksheet;
             var editors = sheet.CustomCellInplaceEditors.GetCustomCellInplaceEditors(sheet.Selection);
             if (editors.Count == 1)
                 spreadsheetControl1.OpenCellEditor(DevExpress.XtraSpreadsheet.CellEditorMode.Edit);
         }
 
-        private void spreadsheetControl1_SelectionChanged(object sender, EventArgs e) => ActivateEditor();
+        private void spreadsheetControl1_CustomCellEdit(object sender, DevExpress.XtraSpreadsheet.SpreadsheetCustomCellEditEventArgs e) {
+            if (e.ValueObject.IsText)
+                e.RepositoryItem = CreateCustomEditor(e.ValueObject.TextValue);
+        }
+
+        private void spreadsheetControl1_SelectionChanged(object sender, EventArgs e) => ActivateCustomEditor();
 
         private void spreadsheetControl1_ProtectionWarning(object sender, HandledEventArgs e) => e.Handled = true;
     }
