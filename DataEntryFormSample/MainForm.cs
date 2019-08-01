@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.Spreadsheet;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraSpreadsheet;
 
 namespace DataEntryFormSample {
     public partial class MainForm : DevExpress.XtraBars.Ribbon.RibbonForm {
@@ -38,7 +40,7 @@ namespace DataEntryFormSample {
                 case "VacationHours":      return CreateSpinEdit(0, 184, 1);
                 case "SickHours":          return CreateSpinEdit(0, 184, 1);
                 case "OvertimeHours":      return CreateSpinEdit(0, 100, 1);
-                case "OvertimeRate":       return CreateSpinEdit(0, 100, 1);
+                case "OvertimeRate":       return CreateSpinEdit(0, 50, 1);
                 case "OtherDeduction":     return CreateSpinEdit(0, 100, 1);
                 default:                   return null;
             }
@@ -46,7 +48,7 @@ namespace DataEntryFormSample {
 
         private RepositoryItemSpinEdit CreateSpinEdit(int minValue, int maxValue, int increment) => new RepositoryItemSpinEdit {
             AutoHeight = false,
-            BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder,
+            BorderStyle = BorderStyles.NoBorder,
             MinValue = minValue,
             MaxValue = maxValue,
             Increment = increment,
@@ -57,10 +59,10 @@ namespace DataEntryFormSample {
             var sheet = spreadsheetControl1.ActiveWorksheet;
             var editors = sheet.CustomCellInplaceEditors.GetCustomCellInplaceEditors(sheet.Selection);
             if (editors.Count == 1)
-                spreadsheetControl1.OpenCellEditor(DevExpress.XtraSpreadsheet.CellEditorMode.Edit);
+                spreadsheetControl1.OpenCellEditor(CellEditorMode.Edit);
         }
 
-        private void spreadsheetControl1_CustomCellEdit(object sender, DevExpress.XtraSpreadsheet.SpreadsheetCustomCellEditEventArgs e) {
+        private void spreadsheetControl1_CustomCellEdit(object sender, SpreadsheetCustomCellEditEventArgs e) {
             if (e.ValueObject.IsText)
                 e.RepositoryItem = CreateCustomEditor(e.ValueObject.TextValue);
         }
