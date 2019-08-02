@@ -97,6 +97,7 @@
     <Compile Include="PayrollCalculatorView.Designer.cs">
       <DependentUpon>PayrollCalculatorView.cs</DependentUpon>
     </Compile>
+    <Compile Include="PayrollModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
