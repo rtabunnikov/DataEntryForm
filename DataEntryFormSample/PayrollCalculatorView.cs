@@ -12,6 +12,7 @@ using System.Windows.Forms;
 
 namespace DataEntryFormSample {
     public partial class PayrollCalculatorView : Component, IBindableComponent, INotifyPropertyChanged {
+        private const string payrollCalculatorSheetName = "Payroll Calculator";
         private SpreadsheetControl control;
         private ControlBindingsCollection dataBindings;
         private BindingContext bindingContext;
@@ -272,16 +273,16 @@ namespace DataEntryFormSample {
         }
 
         private void SpreadsheetControl_CellValueChanged(object sender, SpreadsheetCellEventArgs e) {
-            if (e.SheetName != "Payroll Calculator")
-                return;
-            string reference = e.Cell.GetReferenceA1();
-            string propertyName = cellBindings.SingleOrDefault(p => p.Value == reference).Key;
-            if (!string.IsNullOrEmpty(propertyName))
-                NotifyPropertyChanged(propertyName);
+            if (e.SheetName == payrollCalculatorSheetName) {
+                string reference = e.Cell.GetReferenceA1();
+                string propertyName = cellBindings.SingleOrDefault(p => p.Value == reference).Key;
+                if (!string.IsNullOrEmpty(propertyName))
+                    NotifyPropertyChanged(propertyName);
+            }
         }
 
-        private Worksheet Sheet => (control != null && control.Document.Worksheets.Contains("Payroll Calculator")) ?
-                    control.Document.Worksheets["Payroll Calculator"] : null;
+        private Worksheet Sheet => (control != null && control.Document.Worksheets.Contains(payrollCalculatorSheetName)) ?
+                    control.Document.Worksheets[payrollCalculatorSheetName] : null;
 
         private CellValue GetCellValue(string reference) => Sheet?[reference].Value ?? CellValue.Empty;
 
