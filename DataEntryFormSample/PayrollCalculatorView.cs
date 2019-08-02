@@ -68,18 +68,21 @@ namespace DataEntryFormSample {
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string EmployeeName {
             get => GetBoundCellValue().TextValue;
             set => SetBoundCellValue(value);
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double HourlyWages {
             get => GetBoundCellValue().NumericValue;
             set => SetBoundCellValue(value);
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double RegularHoursWorked {
             get => GetBoundCellValue().NumericValue;
             set {
@@ -91,6 +94,7 @@ namespace DataEntryFormSample {
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double VacationHours {
             get => GetBoundCellValue().NumericValue;
             set {
@@ -102,6 +106,7 @@ namespace DataEntryFormSample {
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double SickHours {
             get => GetBoundCellValue().NumericValue;
             set {
@@ -113,6 +118,7 @@ namespace DataEntryFormSample {
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double OvertimeHours {
             get => GetBoundCellValue().NumericValue;
             set {
@@ -124,6 +130,7 @@ namespace DataEntryFormSample {
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double OvertimeRate {
             get => GetBoundCellValue().NumericValue;
             set {
@@ -135,13 +142,16 @@ namespace DataEntryFormSample {
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double GrossPay => GetBoundCellValue().NumericValue;
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double TaxesAndDeductions => GetBoundCellValue().NumericValue;
 
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double OtherDeduction {
             get => GetBoundCellValue().NumericValue;
             set {
@@ -153,61 +163,72 @@ namespace DataEntryFormSample {
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double NetPay => GetBoundCellValue().NumericValue;
 
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int TaxStatus {
             get => (int)GetBoundCellValue().NumericValue;
             set => SetBoundCellValue(value);
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int FederalAllowance {
             get => (int)GetBoundCellValue().NumericValue;
             set => SetBoundCellValue(value);
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double StateTax {
             get => GetBoundCellValue().NumericValue;
             set => SetBoundCellValue(value);
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double FederalIncomeTax {
             get => GetBoundCellValue().NumericValue;
             set => SetBoundCellValue(value);
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double SocialSecurityTax {
             get => GetBoundCellValue().NumericValue;
             set => SetBoundCellValue(value);
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double MedicareTax {
             get => GetBoundCellValue().NumericValue;
             set => SetBoundCellValue(value);
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double TotalTaxesWithheld => GetBoundCellValue().NumericValue;
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double InsuranceDeduction {
             get => GetBoundCellValue().NumericValue;
             set => SetBoundCellValue(value);
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double OtherRegularDeduction {
             get => GetBoundCellValue().NumericValue;
             set => SetBoundCellValue(value);
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public double TotalRegularDeductions => GetBoundCellValue().NumericValue;
         #endregion
 
@@ -221,6 +242,7 @@ namespace DataEntryFormSample {
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public BindingContext BindingContext {
             get {
                 if (bindingContext == null)
@@ -258,7 +280,8 @@ namespace DataEntryFormSample {
                 NotifyPropertyChanged(propertyName);
         }
 
-        private Worksheet Sheet => control?.Document.Worksheets["Payroll Calculator"];
+        private Worksheet Sheet => (control != null && control.Document.Worksheets.Contains("Payroll Calculator")) ?
+                    control.Document.Worksheets["Payroll Calculator"] : null;
 
         private CellValue GetCellValue(string reference) => Sheet?[reference].Value ?? CellValue.Empty;
 

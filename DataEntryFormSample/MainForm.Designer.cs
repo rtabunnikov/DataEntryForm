@@ -70,6 +70,7 @@
             this.viewRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.ViewRibbonPage();
             this.zoomRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ZoomRibbonPageGroup();
             this.spreadsheetBarController1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetBarController(this.components);
+            this.payrollCalculatorView1 = new DataEntryFormSample.PayrollCalculatorView(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).BeginInit();
             this.SuspendLayout();
@@ -471,6 +472,10 @@
             this.spreadsheetBarController1.BarItems.Add(this.spreadsheetCommandBarSubItem6);
             this.spreadsheetBarController1.Control = this.spreadsheetControl1;
             // 
+            // payrollCalculatorView1
+            // 
+            this.payrollCalculatorView1.Control = this.spreadsheetControl1;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -537,6 +542,7 @@
         private DevExpress.XtraSpreadsheet.UI.ViewRibbonPage viewRibbonPage1;
         private DevExpress.XtraSpreadsheet.UI.ZoomRibbonPageGroup zoomRibbonPageGroup1;
         private DevExpress.XtraSpreadsheet.UI.SpreadsheetBarController spreadsheetBarController1;
+        private PayrollCalculatorView payrollCalculatorView1;
     }
 }
 
