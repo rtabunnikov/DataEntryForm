@@ -91,6 +91,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PayrollCalculatorView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PayrollCalculatorView.Designer.cs">
+      <DependentUpon>PayrollCalculatorView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -109,7 +115,7 @@
     <None Include="app.manifest">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="PayrollCalculator_template.xlsx">
+    <Content Include="PayrollCalculatorTemplate.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\Settings.settings">

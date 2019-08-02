@@ -21,7 +21,7 @@ namespace DataEntryFormSample {
         }
 
         private void LoadDocumentTemplate() {
-            spreadsheetControl1.LoadDocument("PayrollCalculator_template.xlsx");
+            spreadsheetControl1.LoadDocument("PayrollCalculatorTemplate.xlsx");
         }
 
         private void BindCustomEditors() {
