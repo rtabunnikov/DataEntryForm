@@ -93,7 +93,6 @@
             this.spreadsheetControl1.TabIndex = 0;
             this.spreadsheetControl1.Text = "spreadsheetControl1";
             this.spreadsheetControl1.CustomCellEdit += new DevExpress.XtraSpreadsheet.SpreadsheetCustomCellEditEventHandler(this.spreadsheetControl1_CustomCellEdit);
-            this.spreadsheetControl1.SelectionChanged += new System.EventHandler(this.spreadsheetControl1_SelectionChanged);
             this.spreadsheetControl1.ProtectionWarning += new System.ComponentModel.HandledEventHandler(this.spreadsheetControl1_ProtectionWarning);
             // 
             // ribbonControl1
@@ -530,7 +529,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

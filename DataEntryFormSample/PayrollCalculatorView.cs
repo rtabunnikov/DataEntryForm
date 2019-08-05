@@ -263,13 +263,17 @@ namespace DataEntryFormSample {
         #endregion
 
         private void SubscribeEvents() {
-            if (control != null)
+            if (control != null) {
                 control.CellValueChanged += SpreadsheetControl_CellValueChanged;
+                control.SelectionChanged += Control_SelectionChanged;
+            }
         }
 
         private void UnsubscribeEvents() {
-            if (control != null)
+            if (control != null) {
                 control.CellValueChanged -= SpreadsheetControl_CellValueChanged;
+                control.SelectionChanged += Control_SelectionChanged;
+            }
         }
 
         private void SpreadsheetControl_CellValueChanged(object sender, SpreadsheetCellEventArgs e) {
@@ -281,18 +285,39 @@ namespace DataEntryFormSample {
             }
         }
 
+        private void Control_SelectionChanged(object sender, EventArgs e) => ActivateCellEditor();
+
         private Worksheet Sheet => (control != null && control.Document.Worksheets.Contains(payrollCalculatorSheetName)) ?
                     control.Document.Worksheets[payrollCalculatorSheetName] : null;
 
         private CellValue GetCellValue(string reference) => Sheet?[reference].Value ?? CellValue.Empty;
 
         private void SetCellValue(string reference, CellValue value) {
-            if (Sheet != null)
+            if (Sheet != null) {
+                if (reference == Sheet.Selection.GetReferenceA1())
+                    DeactivateCellEditor();
                 Sheet[reference].Value = value;
+                if (reference == Sheet.Selection.GetReferenceA1())
+                    ActivateCellEditor();
+            }
         }
 
         private CellValue GetBoundCellValue([CallerMemberName] string propertyName = "") => GetCellValue(cellBindings[propertyName]);
 
         private void SetBoundCellValue(CellValue value, [CallerMemberName] string propertyName = "") => SetCellValue(cellBindings[propertyName], value);
+
+        private void ActivateCellEditor() {
+            var sheet = Sheet;
+            if (sheet != null) {
+                var editors = sheet.CustomCellInplaceEditors.GetCustomCellInplaceEditors(sheet.Selection);
+                if (editors.Count == 1)
+                    control.OpenCellEditor(CellEditorMode.Edit);
+            }
+        }
+
+        private void DeactivateCellEditor() {
+            if (control != null && control.IsCellEditorActive)
+                control.CloseCellEditor(CellEditorEnterValueMode.Cancel);
+        }
     }
 }

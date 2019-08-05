@@ -59,19 +59,10 @@ namespace DataEntryFormSample {
             IsFloatValue = false
         };
 
-        private void ActivateCustomEditor() {
-            var sheet = spreadsheetControl1.ActiveWorksheet;
-            var editors = sheet.CustomCellInplaceEditors.GetCustomCellInplaceEditors(sheet.Selection);
-            if (editors.Count == 1)
-                spreadsheetControl1.OpenCellEditor(CellEditorMode.Edit);
-        }
-
         private void spreadsheetControl1_CustomCellEdit(object sender, SpreadsheetCustomCellEditEventArgs e) {
             if (e.ValueObject.IsText)
                 e.RepositoryItem = CreateCustomEditor(e.ValueObject.TextValue);
         }
-
-        private void spreadsheetControl1_SelectionChanged(object sender, EventArgs e) => ActivateCustomEditor();
 
         private void spreadsheetControl1_ProtectionWarning(object sender, HandledEventArgs e) => e.Handled = true;
 
