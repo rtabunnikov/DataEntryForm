@@ -71,8 +71,13 @@
             this.zoomRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ZoomRibbonPageGroup();
             this.spreadsheetBarController1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetBarController(this.components);
             this.payrollCalculatorView1 = new DataEntryFormSample.PayrollCalculatorView(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dataNavigator1 = new DevExpress.XtraEditors.DataNavigator();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // spreadsheetControl1
@@ -84,7 +89,7 @@
             this.spreadsheetControl1.Options.Behavior.Selection.HideSelection = true;
             this.spreadsheetControl1.Options.Behavior.Selection.MoveActiveCellMode = DevExpress.XtraSpreadsheet.MoveActiveCellModeOnEnterPress.None;
             this.spreadsheetControl1.Options.TabSelector.Visibility = DevExpress.XtraSpreadsheet.SpreadsheetElementVisibility.Hidden;
-            this.spreadsheetControl1.Size = new System.Drawing.Size(941, 699);
+            this.spreadsheetControl1.Size = new System.Drawing.Size(941, 680);
             this.spreadsheetControl1.TabIndex = 0;
             this.spreadsheetControl1.Text = "spreadsheetControl1";
             this.spreadsheetControl1.CustomCellEdit += new DevExpress.XtraSpreadsheet.SpreadsheetCustomCellEditEventHandler(this.spreadsheetControl1_CustomCellEdit);
@@ -476,12 +481,45 @@
             // 
             this.payrollCalculatorView1.Control = this.spreadsheetControl1;
             // 
+            // bindingSource1
+            // 
+            this.bindingSource1.AllowNew = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dataNavigator1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 759);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(941, 19);
+            this.panel1.TabIndex = 4;
+            // 
+            // dataNavigator1
+            // 
+            this.dataNavigator1.Buttons.Append.Enabled = false;
+            this.dataNavigator1.Buttons.Append.Visible = false;
+            this.dataNavigator1.Buttons.CancelEdit.Enabled = false;
+            this.dataNavigator1.Buttons.CancelEdit.Visible = false;
+            this.dataNavigator1.Buttons.EndEdit.Visible = false;
+            this.dataNavigator1.Buttons.NextPage.Visible = false;
+            this.dataNavigator1.Buttons.PrevPage.Visible = false;
+            this.dataNavigator1.Buttons.Remove.Visible = false;
+            this.dataNavigator1.DataSource = this.bindingSource1;
+            this.dataNavigator1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dataNavigator1.Location = new System.Drawing.Point(0, 0);
+            this.dataNavigator1.Name = "dataNavigator1";
+            this.dataNavigator1.Size = new System.Drawing.Size(131, 19);
+            this.dataNavigator1.TabIndex = 3;
+            this.dataNavigator1.Text = "dataNavigator1";
+            this.dataNavigator1.TextLocation = DevExpress.XtraEditors.NavigatorButtonsTextLocation.Center;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(941, 778);
             this.Controls.Add(this.spreadsheetControl1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.ribbonControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
@@ -490,6 +528,9 @@
             this.Text = "Spreadsheet Data Entry Form Sample";
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -543,6 +584,9 @@
         private DevExpress.XtraSpreadsheet.UI.ZoomRibbonPageGroup zoomRibbonPageGroup1;
         private DevExpress.XtraSpreadsheet.UI.SpreadsheetBarController spreadsheetBarController1;
         private PayrollCalculatorView payrollCalculatorView1;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.Panel panel1;
+        private DevExpress.XtraEditors.DataNavigator dataNavigator1;
     }
 }
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace DataEntryFormSample {
     public class PayrollModel : INotifyPropertyChanged {
         private string employeeName;
-        private double hourlyWage;
+        private double hourlyWages;
         private double regularHoursWorked;
         private double vacationHours;
         private double sickHours;
@@ -35,11 +35,11 @@ namespace DataEntryFormSample {
             }
         }
 
-        public double HourlyWage {
-            get => hourlyWage;
+        public double HourlyWages {
+            get => hourlyWages;
             set {
-                if (hourlyWage != value) {
-                    hourlyWage = value;
+                if (hourlyWages != value) {
+                    hourlyWages = value;
                     NotifyPropertyChanged();
                 }
             }
