@@ -165,22 +165,23 @@ namespace DataEntryFormSample {
 
         private void BindDataSource() {
             bindingSource1.DataSource = payrollData;
-            payrollCalculatorView1.DataBindings.Add("EmployeeName", bindingSource1, "EmployeeName", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("HourlyWages", bindingSource1, "HourlyWages", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("RegularHoursWorked", bindingSource1, "RegularHoursWorked", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("VacationHours", bindingSource1, "VacationHours", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("SickHours", bindingSource1, "SickHours", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("OvertimeHours", bindingSource1, "OvertimeHours", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("OvertimeRate", bindingSource1, "OvertimeRate", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("OtherDeduction", bindingSource1, "OtherDeduction", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("TaxStatus", bindingSource1, "TaxStatus", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("FederalAllowance", bindingSource1, "FederalAllowance", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("StateTax", bindingSource1, "StateTax", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("FederalIncomeTax", bindingSource1, "FederalIncomeTax", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("SocialSecurityTax", bindingSource1, "SocialSecurityTax", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("MedicareTax", bindingSource1, "MedicareTax", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("InsuranceDeduction", bindingSource1, "InsuranceDeduction", false, DataSourceUpdateMode.OnPropertyChanged);
-            payrollCalculatorView1.DataBindings.Add("OtherRegularDeduction", bindingSource1, "OtherRegularDeduction", false, DataSourceUpdateMode.OnPropertyChanged);
+            payrollCalculatorView1.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+            payrollCalculatorView1.DataBindings.Add("EmployeeName", bindingSource1, "EmployeeName");
+            payrollCalculatorView1.DataBindings.Add("HourlyWages", bindingSource1, "HourlyWages");
+            payrollCalculatorView1.DataBindings.Add("RegularHoursWorked", bindingSource1, "RegularHoursWorked");
+            payrollCalculatorView1.DataBindings.Add("VacationHours", bindingSource1, "VacationHours");
+            payrollCalculatorView1.DataBindings.Add("SickHours", bindingSource1, "SickHours");
+            payrollCalculatorView1.DataBindings.Add("OvertimeHours", bindingSource1, "OvertimeHours");
+            payrollCalculatorView1.DataBindings.Add("OvertimeRate", bindingSource1, "OvertimeRate");
+            payrollCalculatorView1.DataBindings.Add("OtherDeduction", bindingSource1, "OtherDeduction");
+            payrollCalculatorView1.DataBindings.Add("TaxStatus", bindingSource1, "TaxStatus");
+            payrollCalculatorView1.DataBindings.Add("FederalAllowance", bindingSource1, "FederalAllowance");
+            payrollCalculatorView1.DataBindings.Add("StateTax", bindingSource1, "StateTax");
+            payrollCalculatorView1.DataBindings.Add("FederalIncomeTax", bindingSource1, "FederalIncomeTax");
+            payrollCalculatorView1.DataBindings.Add("SocialSecurityTax", bindingSource1, "SocialSecurityTax");
+            payrollCalculatorView1.DataBindings.Add("MedicareTax", bindingSource1, "MedicareTax");
+            payrollCalculatorView1.DataBindings.Add("InsuranceDeduction", bindingSource1, "InsuranceDeduction");
+            payrollCalculatorView1.DataBindings.Add("OtherRegularDeduction", bindingSource1, "OtherRegularDeduction");
         }
     }
 }
