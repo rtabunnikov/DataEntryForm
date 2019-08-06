@@ -38,10 +38,7 @@ namespace DataEntryFormSample {
             cellBindings.Add("SickHours", "D12");
             cellBindings.Add("OvertimeHours", "D14");
             cellBindings.Add("OvertimeRate", "D16");
-            cellBindings.Add("GrossPay", "D18");
-            cellBindings.Add("TaxesAndDeductions", "D20");
             cellBindings.Add("OtherDeduction", "D22");
-            cellBindings.Add("NetPay", "D24");
 
             cellBindings.Add("TaxStatus", "I4");
             cellBindings.Add("FederalAllowance", "I6");
@@ -49,11 +46,9 @@ namespace DataEntryFormSample {
             cellBindings.Add("FederalIncomeTax", "I10");
             cellBindings.Add("SocialSecurityTax", "I12");
             cellBindings.Add("MedicareTax", "I14");
-            cellBindings.Add("TotalTaxesWithheld", "I16");
 
             cellBindings.Add("InsuranceDeduction", "I20");
             cellBindings.Add("OtherRegularDeduction", "I22");
-            cellBindings.Add("TotalRegularDeductions", "I24");
         }
 
         #region Properties
