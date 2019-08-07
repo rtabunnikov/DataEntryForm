@@ -97,7 +97,7 @@ namespace DataEntryFormSample {
             ITypedList typedList = dataSource as ITypedList;
             if (typedList != null) {
                 PropertyDescriptorCollection dataSourceProperties = typedList.GetItemProperties(null);
-                foreach(string propertyName in cellBindings.Keys) {
+                foreach (string propertyName in cellBindings.Keys) {
                     PropertyDescriptor propertyDescriptor = dataSourceProperties[propertyName];
                     if (propertyDescriptor == null)
                         throw new InvalidOperationException($"Unable to get property descriptor for { propertyName } property");
@@ -159,8 +159,10 @@ namespace DataEntryFormSample {
 
         private void PullData() {
             if (currentItem != null) {
-                foreach (PropertyDescriptor propertyDescriptor in propertyDescriptors)
-                    SetCellValue(cellBindings[propertyDescriptor.Name], CellValue.FromObject(propertyDescriptor.GetValue(currentItem)));
+                foreach (PropertyDescriptor propertyDescriptor in propertyDescriptors) {
+                    string reference = cellBindings[propertyDescriptor.Name];
+                    SetCellValue(reference, CellValue.FromObject(propertyDescriptor.GetValue(currentItem)));
+                }
             }
         }
 
