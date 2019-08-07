@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DataEntryFormSample {
+    /// <summary>
+    /// Entity class with represents payroll item (record) 
+    /// </summary>
     public class PayrollModel : INotifyPropertyChanged {
         private string employeeName;
         private double hourlyWages;

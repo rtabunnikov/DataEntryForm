@@ -29,6 +29,9 @@ namespace DataEntryFormSample {
             spreadsheetControl1.Document.History.IsEnabled = false;
         }
 
+        /// <summary>
+        /// Bind custom cell inplace editors
+        /// </summary>
         private void BindCustomEditors() {
             var sheet = spreadsheetControl1.ActiveWorksheet;
             sheet.CustomCellInplaceEditors.Add(sheet["D8"], CustomCellInplaceEditorType.Custom, "RegularHoursWorked");
@@ -60,11 +63,13 @@ namespace DataEntryFormSample {
             IsFloatValue = false
         };
 
+        // Create custom inplace editor at the beginning of editing cell
         private void spreadsheetControl1_CustomCellEdit(object sender, SpreadsheetCustomCellEditEventArgs e) {
             if (e.ValueObject.IsText)
                 e.RepositoryItem = CreateCustomEditor(e.ValueObject.TextValue);
         }
 
+        // Activate custom inplace editor on selection changed
         private void SpreadsheetControl1_SelectionChanged(object sender, EventArgs e) {
             var sheet = spreadsheetControl1.ActiveWorksheet;
             if (sheet != null) {
@@ -74,8 +79,12 @@ namespace DataEntryFormSample {
             }
         }
 
+        // Suppress protection warning
         private void spreadsheetControl1_ProtectionWarning(object sender, HandledEventArgs e) => e.Handled = true;
 
+        /// <summary>
+        /// Fill payroll with sample data 
+        /// </summary>
         private void InitializePayrollData() {
             payrollData.Add(new PayrollModel() {
                 EmployeeName = "Linda Brown",
@@ -173,6 +182,9 @@ namespace DataEntryFormSample {
             });
         }
 
+        /// <summary>
+        /// Bind data source properties to cells 
+        /// </summary>
         private void BindDataSource() {
             spreadsheetBindingManager1.SheetName = "Payroll Calculator";
 
