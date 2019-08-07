@@ -121,7 +121,7 @@ namespace DataEntryFormSample {
 
         private void BindingManager_CurrentChanged(object sender, EventArgs e) {
             DeactivateCellEditor(CellEditorEnterValueMode.ActiveCell);
-            control.BeginUpdate();
+            control?.BeginUpdate();
             try {
                 UnsubscribePropertyChanged();
                 currentItem = bindingManager.Current;
@@ -129,7 +129,7 @@ namespace DataEntryFormSample {
                 SubscribePropertyChanged();
             }
             finally {
-                control.EndUpdate();
+                control?.EndUpdate();
                 ActivateCellEditor();
             }
         }
@@ -149,7 +149,7 @@ namespace DataEntryFormSample {
 
         private void OnPropertyChanged(object sender, EventArgs eventArgs) {
             PropertyDescriptor propertyDescriptor = sender as PropertyDescriptor;
-            if (propertyDescriptor != null && bindingManager != null) {
+            if (propertyDescriptor != null && currentItem != null) {
                 string reference;
                 if (cellBindings.TryGetValue(propertyDescriptor.Name, out reference))
                     SetCellValue(reference, CellValue.FromObject(propertyDescriptor.GetValue(currentItem)));
