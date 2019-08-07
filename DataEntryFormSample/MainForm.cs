@@ -175,6 +175,7 @@ namespace DataEntryFormSample {
 
         private void BindDataSource() {
             spreadsheetBindingManager1.SheetName = "Payroll Calculator";
+
             spreadsheetBindingManager1.AddBinding("EmployeeName", "D4");
             spreadsheetBindingManager1.AddBinding("HourlyWages", "D6");
             spreadsheetBindingManager1.AddBinding("RegularHoursWorked", "D8");
@@ -183,14 +184,12 @@ namespace DataEntryFormSample {
             spreadsheetBindingManager1.AddBinding("OvertimeHours", "D14");
             spreadsheetBindingManager1.AddBinding("OvertimeRate", "D16");
             spreadsheetBindingManager1.AddBinding("OtherDeduction", "D22");
-
             spreadsheetBindingManager1.AddBinding("TaxStatus", "I4");
             spreadsheetBindingManager1.AddBinding("FederalAllowance", "I6");
             spreadsheetBindingManager1.AddBinding("StateTax", "I8");
             spreadsheetBindingManager1.AddBinding("FederalIncomeTax", "I10");
             spreadsheetBindingManager1.AddBinding("SocialSecurityTax", "I12");
             spreadsheetBindingManager1.AddBinding("MedicareTax", "I14");
-
             spreadsheetBindingManager1.AddBinding("InsuranceDeduction", "I20");
             spreadsheetBindingManager1.AddBinding("OtherRegularDeduction", "I22");
 
