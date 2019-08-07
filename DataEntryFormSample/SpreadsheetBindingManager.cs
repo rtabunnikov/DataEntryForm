@@ -120,7 +120,7 @@ namespace DataEntryFormSample {
         }
 
         private void BindingManager_CurrentChanged(object sender, EventArgs e) {
-            DeactivateCellEditor();
+            DeactivateCellEditor(CellEditorEnterValueMode.ActiveCell);
             control.BeginUpdate();
             try {
                 UnsubscribePropertyChanged();
@@ -197,9 +197,9 @@ namespace DataEntryFormSample {
             }
         }
 
-        private void DeactivateCellEditor() {
+        private void DeactivateCellEditor(CellEditorEnterValueMode mode = CellEditorEnterValueMode.Cancel) {
             if (control != null && control.IsCellEditorActive)
-                control.CloseCellEditor(CellEditorEnterValueMode.Cancel);
+                control.CloseCellEditor(mode);
         }
     }
 }

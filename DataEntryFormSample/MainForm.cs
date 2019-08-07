@@ -26,6 +26,7 @@ namespace DataEntryFormSample {
 
         private void LoadDocumentTemplate() {
             spreadsheetControl1.LoadDocument("PayrollCalculatorTemplate.xlsx");
+            spreadsheetControl1.Document.History.IsEnabled = false;
         }
 
         private void BindCustomEditors() {
