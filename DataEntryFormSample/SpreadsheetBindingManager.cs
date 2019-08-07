@@ -104,6 +104,7 @@ namespace DataEntryFormSample {
                     propertyDescriptors.Add(propertyDescriptor);
                 }
             }
+            PullData();
             SubscribePropertyChanged();
         }
 
