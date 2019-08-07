@@ -27,7 +27,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.spreadsheetControl1 = new DevExpress.XtraSpreadsheet.SpreadsheetControl();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.spreadsheetCommandBarButtonItem1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem();
             this.spreadsheetCommandBarButtonItem8 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem();
             this.spreadsheetCommandBarButtonItem9 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem();
             this.spreadsheetCommandBarButtonItem10 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem();
@@ -70,10 +69,10 @@
             this.viewRibbonPage1 = new DevExpress.XtraSpreadsheet.UI.ViewRibbonPage();
             this.zoomRibbonPageGroup1 = new DevExpress.XtraSpreadsheet.UI.ZoomRibbonPageGroup();
             this.spreadsheetBarController1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetBarController(this.components);
-            this.payrollCalculatorView1 = new DataEntryFormSample.PayrollCalculatorView(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataNavigator1 = new DevExpress.XtraEditors.DataNavigator();
+            this.spreadsheetBindingManager1 = new DataEntryFormSample.SpreadsheetBindingManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -93,6 +92,7 @@
             this.spreadsheetControl1.TabIndex = 0;
             this.spreadsheetControl1.Text = "spreadsheetControl1";
             this.spreadsheetControl1.CustomCellEdit += new DevExpress.XtraSpreadsheet.SpreadsheetCustomCellEditEventHandler(this.spreadsheetControl1_CustomCellEdit);
+            this.spreadsheetControl1.SelectionChanged += new System.EventHandler(this.SpreadsheetControl1_SelectionChanged);
             this.spreadsheetControl1.ProtectionWarning += new System.ComponentModel.HandledEventHandler(this.spreadsheetControl1_ProtectionWarning);
             // 
             // ribbonControl1
@@ -102,7 +102,6 @@
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
             this.ribbonControl1.SearchEditItem,
-            this.spreadsheetCommandBarButtonItem1,
             this.spreadsheetCommandBarButtonItem8,
             this.spreadsheetCommandBarButtonItem9,
             this.spreadsheetCommandBarButtonItem10,
@@ -149,12 +148,6 @@
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019;
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.Size = new System.Drawing.Size(941, 79);
-            // 
-            // spreadsheetCommandBarButtonItem1
-            // 
-            this.spreadsheetCommandBarButtonItem1.CommandName = "FileNew";
-            this.spreadsheetCommandBarButtonItem1.Id = 1;
-            this.spreadsheetCommandBarButtonItem1.Name = "spreadsheetCommandBarButtonItem1";
             // 
             // spreadsheetCommandBarButtonItem8
             // 
@@ -415,7 +408,6 @@
             // 
             // commonRibbonPageGroup1
             // 
-            this.commonRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem1);
             this.commonRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem8);
             this.commonRibbonPageGroup1.ItemLinks.Add(this.spreadsheetCommandBarButtonItem9);
             this.commonRibbonPageGroup1.Name = "commonRibbonPageGroup1";
@@ -436,7 +428,6 @@
             // 
             // spreadsheetBarController1
             // 
-            this.spreadsheetBarController1.BarItems.Add(this.spreadsheetCommandBarButtonItem1);
             this.spreadsheetBarController1.BarItems.Add(this.spreadsheetCommandBarButtonItem8);
             this.spreadsheetBarController1.BarItems.Add(this.spreadsheetCommandBarButtonItem9);
             this.spreadsheetBarController1.BarItems.Add(this.spreadsheetCommandBarButtonItem10);
@@ -476,10 +467,6 @@
             this.spreadsheetBarController1.BarItems.Add(this.spreadsheetCommandBarSubItem6);
             this.spreadsheetBarController1.Control = this.spreadsheetControl1;
             // 
-            // payrollCalculatorView1
-            // 
-            this.payrollCalculatorView1.Control = this.spreadsheetControl1;
-            // 
             // bindingSource1
             // 
             this.bindingSource1.AllowNew = false;
@@ -507,10 +494,15 @@
             this.dataNavigator1.Dock = System.Windows.Forms.DockStyle.Left;
             this.dataNavigator1.Location = new System.Drawing.Point(0, 0);
             this.dataNavigator1.Name = "dataNavigator1";
-            this.dataNavigator1.Size = new System.Drawing.Size(131, 19);
+            this.dataNavigator1.Size = new System.Drawing.Size(143, 19);
             this.dataNavigator1.TabIndex = 3;
             this.dataNavigator1.Text = "dataNavigator1";
             this.dataNavigator1.TextLocation = DevExpress.XtraEditors.NavigatorButtonsTextLocation.Center;
+            // 
+            // spreadsheetBindingManager1
+            // 
+            this.spreadsheetBindingManager1.Control = this.spreadsheetControl1;
+            this.spreadsheetBindingManager1.DataSource = null;
             // 
             // MainForm
             // 
@@ -538,7 +530,6 @@
 
         private DevExpress.XtraSpreadsheet.SpreadsheetControl spreadsheetControl1;
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
-        private DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem spreadsheetCommandBarButtonItem1;
         private DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem spreadsheetCommandBarButtonItem8;
         private DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem spreadsheetCommandBarButtonItem9;
         private DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandBarButtonItem spreadsheetCommandBarButtonItem10;
@@ -581,10 +572,10 @@
         private DevExpress.XtraSpreadsheet.UI.ViewRibbonPage viewRibbonPage1;
         private DevExpress.XtraSpreadsheet.UI.ZoomRibbonPageGroup zoomRibbonPageGroup1;
         private DevExpress.XtraSpreadsheet.UI.SpreadsheetBarController spreadsheetBarController1;
-        private PayrollCalculatorView payrollCalculatorView1;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Panel panel1;
         private DevExpress.XtraEditors.DataNavigator dataNavigator1;
+        private SpreadsheetBindingManager spreadsheetBindingManager1;
     }
 }
 

@@ -64,6 +64,15 @@ namespace DataEntryFormSample {
                 e.RepositoryItem = CreateCustomEditor(e.ValueObject.TextValue);
         }
 
+        private void SpreadsheetControl1_SelectionChanged(object sender, EventArgs e) {
+            var sheet = spreadsheetControl1.ActiveWorksheet;
+            if (sheet != null) {
+                var editors = sheet.CustomCellInplaceEditors.GetCustomCellInplaceEditors(sheet.Selection);
+                if (editors.Count == 1)
+                    spreadsheetControl1.OpenCellEditor(CellEditorMode.Edit);
+            }
+        }
+
         private void spreadsheetControl1_ProtectionWarning(object sender, HandledEventArgs e) => e.Handled = true;
 
         private void InitializePayrollData() {
@@ -164,24 +173,28 @@ namespace DataEntryFormSample {
         }
 
         private void BindDataSource() {
+            spreadsheetBindingManager1.SheetName = "Payroll Calculator";
+            spreadsheetBindingManager1.AddBinding("EmployeeName", "D4");
+            spreadsheetBindingManager1.AddBinding("HourlyWages", "D6");
+            spreadsheetBindingManager1.AddBinding("RegularHoursWorked", "D8");
+            spreadsheetBindingManager1.AddBinding("VacationHours", "D10");
+            spreadsheetBindingManager1.AddBinding("SickHours", "D12");
+            spreadsheetBindingManager1.AddBinding("OvertimeHours", "D14");
+            spreadsheetBindingManager1.AddBinding("OvertimeRate", "D16");
+            spreadsheetBindingManager1.AddBinding("OtherDeduction", "D22");
+
+            spreadsheetBindingManager1.AddBinding("TaxStatus", "I4");
+            spreadsheetBindingManager1.AddBinding("FederalAllowance", "I6");
+            spreadsheetBindingManager1.AddBinding("StateTax", "I8");
+            spreadsheetBindingManager1.AddBinding("FederalIncomeTax", "I10");
+            spreadsheetBindingManager1.AddBinding("SocialSecurityTax", "I12");
+            spreadsheetBindingManager1.AddBinding("MedicareTax", "I14");
+
+            spreadsheetBindingManager1.AddBinding("InsuranceDeduction", "I20");
+            spreadsheetBindingManager1.AddBinding("OtherRegularDeduction", "I22");
+
             bindingSource1.DataSource = payrollData;
-            payrollCalculatorView1.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
-            payrollCalculatorView1.DataBindings.Add("EmployeeName", bindingSource1, "EmployeeName");
-            payrollCalculatorView1.DataBindings.Add("HourlyWages", bindingSource1, "HourlyWages");
-            payrollCalculatorView1.DataBindings.Add("RegularHoursWorked", bindingSource1, "RegularHoursWorked");
-            payrollCalculatorView1.DataBindings.Add("VacationHours", bindingSource1, "VacationHours");
-            payrollCalculatorView1.DataBindings.Add("SickHours", bindingSource1, "SickHours");
-            payrollCalculatorView1.DataBindings.Add("OvertimeHours", bindingSource1, "OvertimeHours");
-            payrollCalculatorView1.DataBindings.Add("OvertimeRate", bindingSource1, "OvertimeRate");
-            payrollCalculatorView1.DataBindings.Add("OtherDeduction", bindingSource1, "OtherDeduction");
-            payrollCalculatorView1.DataBindings.Add("TaxStatus", bindingSource1, "TaxStatus");
-            payrollCalculatorView1.DataBindings.Add("FederalAllowance", bindingSource1, "FederalAllowance");
-            payrollCalculatorView1.DataBindings.Add("StateTax", bindingSource1, "StateTax");
-            payrollCalculatorView1.DataBindings.Add("FederalIncomeTax", bindingSource1, "FederalIncomeTax");
-            payrollCalculatorView1.DataBindings.Add("SocialSecurityTax", bindingSource1, "SocialSecurityTax");
-            payrollCalculatorView1.DataBindings.Add("MedicareTax", bindingSource1, "MedicareTax");
-            payrollCalculatorView1.DataBindings.Add("InsuranceDeduction", bindingSource1, "InsuranceDeduction");
-            payrollCalculatorView1.DataBindings.Add("OtherRegularDeduction", bindingSource1, "OtherRegularDeduction");
+            spreadsheetBindingManager1.DataSource = bindingSource1;
         }
     }
 }
