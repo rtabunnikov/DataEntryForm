@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.Spreadsheet;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraSpreadsheet;
 
 namespace DataEntryFormSample {
-    public partial class MainForm : DevExpress.XtraBars.Ribbon.RibbonForm {
+    public partial class MainForm : XtraForm {
         readonly List<PayrollModel> payrollData = new List<PayrollModel>();
 
         public MainForm() {
@@ -188,7 +189,7 @@ namespace DataEntryFormSample {
         private void BindDataSource() {
             spreadsheetBindingManager1.SheetName = "Payroll Calculator";
 
-            spreadsheetBindingManager1.AddBinding("EmployeeName", "D4");
+            spreadsheetBindingManager1.AddBinding("EmployeeName", "C3");
             spreadsheetBindingManager1.AddBinding("HourlyWages", "D6");
             spreadsheetBindingManager1.AddBinding("RegularHoursWorked", "D8");
             spreadsheetBindingManager1.AddBinding("VacationHours", "D10");
