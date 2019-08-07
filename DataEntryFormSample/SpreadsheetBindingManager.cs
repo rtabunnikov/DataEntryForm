@@ -58,8 +58,7 @@ namespace DataEntryFormSample {
         public void AddBinding(string propertyName, string cellReference) {
             if (cellBindings.ContainsKey(propertyName))
                 throw new ArgumentException($"Already has binding to {propertyName} property");
-            ITypedList typedList = dataSource as ITypedList;
-            if (typedList != null) {
+            if (dataSource is ITypedList typedList) {
                 PropertyDescriptorCollection dataSourceProperties = typedList.GetItemProperties(null);
                 PropertyDescriptor propertyDescriptor = dataSourceProperties[propertyName];
                 if (propertyDescriptor == null)
@@ -88,14 +87,12 @@ namespace DataEntryFormSample {
         }
 
         private void Attach() {
-            ICurrencyManagerProvider provider = dataSource as ICurrencyManagerProvider;
-            if (provider != null) {
+            if (dataSource is ICurrencyManagerProvider provider) {
                 bindingManager = provider.CurrencyManager;
                 bindingManager.CurrentChanged += BindingManager_CurrentChanged;
                 currentItem = bindingManager.Current;
             }
-            ITypedList typedList = dataSource as ITypedList;
-            if (typedList != null) {
+            if (dataSource is ITypedList typedList) {
                 PropertyDescriptorCollection dataSourceProperties = typedList.GetItemProperties(null);
                 foreach (string propertyName in cellBindings.Keys) {
                     PropertyDescriptor propertyDescriptor = dataSourceProperties[propertyName];
