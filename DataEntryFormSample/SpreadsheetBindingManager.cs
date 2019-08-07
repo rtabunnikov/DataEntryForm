@@ -12,11 +12,11 @@ using System.Windows.Forms;
 namespace DataEntryFormSample {
     public partial class SpreadsheetBindingManager : Component {
         private SpreadsheetControl control;
-        private Dictionary<string, string> cellBindings = new Dictionary<string, string>();
-        private PropertyDescriptorCollection propertyDescriptors = new PropertyDescriptorCollection(null);
         private object dataSource;
-        private BindingManagerBase bindingManager;
         private object currentItem;
+        private BindingManagerBase bindingManager;
+        private readonly Dictionary<string, string> cellBindings = new Dictionary<string, string>();
+        private readonly PropertyDescriptorCollection propertyDescriptors = new PropertyDescriptorCollection(null);
 
         public SpreadsheetBindingManager() {
             InitializeComponent();
