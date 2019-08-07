@@ -43,8 +43,10 @@
             this.spreadsheetControl1.Name = "spreadsheetControl1";
             this.spreadsheetControl1.Options.Behavior.Selection.HideSelection = true;
             this.spreadsheetControl1.Options.Behavior.Selection.MoveActiveCellMode = DevExpress.XtraSpreadsheet.MoveActiveCellModeOnEnterPress.None;
+            this.spreadsheetControl1.Options.HorizontalScrollbar.Visibility = DevExpress.XtraSpreadsheet.SpreadsheetScrollbarVisibility.Hidden;
             this.spreadsheetControl1.Options.TabSelector.Visibility = DevExpress.XtraSpreadsheet.SpreadsheetElementVisibility.Hidden;
-            this.spreadsheetControl1.Size = new System.Drawing.Size(897, 672);
+            this.spreadsheetControl1.Options.VerticalScrollbar.Visibility = DevExpress.XtraSpreadsheet.SpreadsheetScrollbarVisibility.Hidden;
+            this.spreadsheetControl1.Size = new System.Drawing.Size(905, 672);
             this.spreadsheetControl1.TabIndex = 0;
             this.spreadsheetControl1.Text = "spreadsheetControl1";
             this.spreadsheetControl1.CustomCellEdit += new DevExpress.XtraSpreadsheet.SpreadsheetCustomCellEditEventHandler(this.spreadsheetControl1_CustomCellEdit);
@@ -65,7 +67,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 672);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(897, 19);
+            this.panel1.Size = new System.Drawing.Size(905, 19);
             this.panel1.TabIndex = 4;
             // 
             // dataNavigator1
@@ -96,7 +98,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(897, 691);
+            this.ClientSize = new System.Drawing.Size(905, 691);
             this.Controls.Add(this.spreadsheetControl1);
             this.Controls.Add(this.panel1);
             this.LookAndFeel.SkinName = "Office 2019 Colorful";
