@@ -140,17 +140,17 @@ namespace DataEntryFormSample {
 
         private void BindingManager_CurrentChanged(object sender, EventArgs e) {
             // Update data entry form on current item / record changes
-            DeactivateCellEditor(CellEditorEnterValueMode.ActiveCell);
             control?.BeginUpdate();
             try {
+                DeactivateCellEditor(CellEditorEnterValueMode.ActiveCell);
                 UnsubscribePropertyChanged();
                 currentItem = bindingManager.Current;
                 PullData();
                 SubscribePropertyChanged();
+                ActivateCellEditor();
             }
             finally {
                 control?.EndUpdate();
-                ActivateCellEditor();
             }
         }
 
