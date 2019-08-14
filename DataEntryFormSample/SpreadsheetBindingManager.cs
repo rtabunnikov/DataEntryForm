@@ -1,18 +1,12 @@
-﻿using DevExpress.Spreadsheet;
-using DevExpress.XtraSpreadsheet;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.Spreadsheet;
+using DevExpress.XtraSpreadsheet;
 
 namespace DataEntryFormSample {
-    /// <summary>
-    /// Data source properties to cells binding manager 
-    /// </summary>
     public partial class SpreadsheetBindingManager : Component {
         private SpreadsheetControl control;
         private object dataSource;
@@ -58,11 +52,6 @@ namespace DataEntryFormSample {
             }
         }
 
-        /// <summary>
-        /// Add data source property to cell binding
-        /// </summary>
-        /// <param name="propertyName">Data source property name</param>
-        /// <param name="cellReference">Cell reference (A1)</param>
         public void AddBinding(string propertyName, string cellReference) {
             if (cellBindings.ContainsKey(propertyName))
                 throw new ArgumentException($"Already has binding to {propertyName} property");
@@ -78,10 +67,6 @@ namespace DataEntryFormSample {
             cellBindings.Add(propertyName, cellReference);
         }
 
-        /// <summary>
-        /// Remove binding for data source property
-        /// </summary>
-        /// <param name="propertyName">Data source property name</param>
         public void RemoveBinding(string propertyName) {
             if (cellBindings.ContainsKey(propertyName)) {
                 PropertyDescriptor propertyDescriptor = propertyDescriptors[propertyName];
@@ -92,18 +77,12 @@ namespace DataEntryFormSample {
             }
         }
 
-        /// <summary>
-        /// Remove all bindings
-        /// </summary>
         public void ClearBindings() {
             UnsubscribePropertyChanged();
             propertyDescriptors.Clear();
             cellBindings.Clear();
         }
 
-        /// <summary>
-        /// Aquire binding manager and property descriptors, subscribe data source/ data members events
-        /// </summary>
         private void Attach() {
             if (dataSource is ICurrencyManagerProvider provider) {
                 bindingManager = provider.CurrencyManager;
@@ -123,9 +102,6 @@ namespace DataEntryFormSample {
             SubscribePropertyChanged();
         }
 
-        /// <summary>
-        /// Unsubscribe data source / data members events, clear property descriptors 
-        /// </summary>
         private void Detach() {
             if (dataSource != null) {
                 UnsubscribePropertyChanged();
@@ -160,6 +136,7 @@ namespace DataEntryFormSample {
                     propertyDescriptor.RemoveValueChanged(currentItem, OnPropertyChanged);
             }
         }
+
         private void SubscribePropertyChanged() {
             if (currentItem != null) {
                 foreach (PropertyDescriptor propertyDescriptor in propertyDescriptors)
@@ -168,7 +145,6 @@ namespace DataEntryFormSample {
         }
 
         private void OnPropertyChanged(object sender, EventArgs eventArgs) {
-            // Update bound cell value on property changed
             PropertyDescriptor propertyDescriptor = sender as PropertyDescriptor;
             if (propertyDescriptor != null && currentItem != null) {
                 string reference;
@@ -177,7 +153,6 @@ namespace DataEntryFormSample {
             }
         }
 
-        // Pull data from data source (update all bound cells)
         private void PullData() {
             if (currentItem != null) {
                 foreach (PropertyDescriptor propertyDescriptor in propertyDescriptors) {
@@ -188,7 +163,6 @@ namespace DataEntryFormSample {
         }
 
         private void SpreadsheetControl_CellValueChanged(object sender, SpreadsheetCellEventArgs e) {
-            // Update property on cell value changed
             if (e.SheetName == SheetName) {
                 string reference = e.Cell.GetReferenceA1();
                 string propertyName = cellBindings.SingleOrDefault(p => p.Value == reference).Key;
